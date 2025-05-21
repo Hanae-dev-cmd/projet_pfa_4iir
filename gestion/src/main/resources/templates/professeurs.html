@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des professeurs</title>
+</head>
+<body>
+<h2>Liste des professeurs</h2>
+<a th:href="@{/professeurs/ajouter}">➕ Ajouter un professeur</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Spécialité</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="p : ${professeurs}">
+        <td th:text="${p.id}">1</td>
+        <td th:text="${p.nom}">Nom</td>
+        <td th:text="${p.specialite}">Spécialité</td>
+        <td>
+            <a th:href="@{'/professeurs/edit/' + ${p.id}}">✏️</a>
+            <a th:href="@{'/professeurs/delete/' + ${p.id}}" onclick="return confirm('Supprimer ?')">❌</a>
+        </td>
+    </tr>
+</table>
+
+<a th:href="@{/}">⬅ Retour</a>
+</body>
+</html>

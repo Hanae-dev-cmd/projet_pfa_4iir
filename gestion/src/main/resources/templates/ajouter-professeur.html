@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Ajouter/Modifier Professeur</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<h2 th:text="${professeur.id} == null ? 'Ajouter un professeur' : 'Modifier le professeur'"></h2>
+
+<!-- Formulaire pour AJOUT -->
+<form th:if="${professeur.id} == null" th:action="@{/professeurs/ajouter}" th:object="${professeur}" method="post">
+    <label>Nom:</label>
+    <input type="text" th:field="*{nom}" required><br><br>
+
+    <label>Spécialité:</label>
+    <input type="text" th:field="*{specialite}" required><br><br>
+
+    <button type="submit">Ajouter</button>
+</form>
+
+<!-- Formulaire pour MODIFICATION -->
+<form th:if="${professeur.id} != null" th:action="@{'/professeurs/update/' + ${professeur.id}}" th:object="${professeur}" method="post">
+    <label>Nom:</label>
+    <input type="text" th:field="*{nom}" required><br><br>
+
+    <label>Spécialité:</label>
+    <input type="text" th:field="*{specialite}" required><br><br>
+
+    <button type="submit">Mettre à jour</button>
+</form>
+
+<br>
+<a th:href="@{/professeurs}">⬅ Retour à la liste</a>
+</body>
+</html>
+

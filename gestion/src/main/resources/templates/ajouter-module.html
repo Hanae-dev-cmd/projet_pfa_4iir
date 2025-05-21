@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Ajouter/Modifier un Module</title>
+  <meta charset="UTF-8">
+</head>
+<body>
+<h2 th:text="${module.id == null} ? 'Ajouter un module' : 'Modifier le module'"></h2>
+
+<!-- Formulaire d'ajout -->
+<form th:action="@{/modules/ajouter}" th:object="${module}" method="post" th:if="${module.id == null}">
+  <label>Nom:</label>
+  <input type="text" th:field="*{nom}" required><br><br>
+
+  <label>Description:</label>
+  <input type="text" th:field="*{description}" required><br><br>
+
+  <button type="submit">Ajouter</button>
+</form>
+
+<!-- Formulaire de modification -->
+<form th:action="@{'/modules/update/' + ${module.id}}" th:object="${module}" method="post" th:unless="${module.id == null}">
+  <label>Nom:</label>
+  <input type="text" th:field="*{nom}" required><br><br>
+
+  <label>Description:</label>
+  <input type="text" th:field="*{description}" required><br><br>
+
+  <button type="submit">Mettre à jour</button>
+</form>
+
+<br>
+<a th:href="@{/modules}">⬅ Retour</a>
+</body>
+</html>
+
+

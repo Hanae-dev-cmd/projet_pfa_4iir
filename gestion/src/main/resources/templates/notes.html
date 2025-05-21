@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des notes</title>
+</head>
+<body>
+<h2>Liste des notes</h2>
+<a th:href="@{/notes/ajouter}">➕ Ajouter une note</a>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Valeur</th>
+        <th>Étudiant</th>
+        <th>Module</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="note : ${notes}">
+        <td th:text="${note.id}"></td>
+        <td th:text="${note.valeur}"></td>
+        <td th:text="${note.etudiant.nom + ' ' + note.etudiant.prenom}"></td>
+        <td th:text="${note.module.nom}"></td>
+        <td>
+            <a th:href="@{'/notes/edit/' + ${note.id}}">✏️</a>
+            <a th:href="@{'/notes/delete/' + ${note.id}}" onclick="return confirm('Supprimer ?')">❌</a>
+        </td>
+    </tr>
+</table>
+
+<a th:href="@{/}">⬅ Retour</a>
+</body>
+</html>
